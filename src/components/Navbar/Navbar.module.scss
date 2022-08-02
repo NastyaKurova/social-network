@@ -1,0 +1,20 @@
+.navbar{
+  grid-area: navbar;
+  box-shadow: 0 0 8px 1px rgb(0 0 0 / 20%);
+  background: white;
+  text-align: center;
+  padding: 16px;
+  max-height: 368px;
+  a{
+    text-decoration: none;
+    color: black;
+    &:hover{
+      cursor: pointer;
+      color: #dc4734 ;
+    }
+  }
+
+}
+.navbarLink{
+  padding: 24px 0;
+}
