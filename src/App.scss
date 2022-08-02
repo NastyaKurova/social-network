@@ -37,7 +37,7 @@
   }
 }
 
-.wrapper{
+.wrapper {
   display: grid;
   grid-template-areas:
   "header header"
@@ -46,12 +46,13 @@
   grid-row-gap: 24px;
   grid-column-gap: 24px;
 }
-.container{
+
+.wrapper-container {
   display: grid;
   grid-area: container;
   padding: 0 100px;
   grid-template-areas:
-  "navbar profile";
+  "navbar content";
   grid-column-gap: 24px;
   grid-template-columns: 3fr 10fr;
   @media (max-width: 1024px) {
@@ -59,3 +60,6 @@
   }
 }
 
+.wrapper-container-contents {
+  grid-area: content;
+}
