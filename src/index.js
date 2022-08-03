@@ -1,6 +1,6 @@
 import React from 'react';
 import reportWebVitals from './reportWebVitals';
-import {addPost, State, subscribe} from "./State/State";
+import store from "./State/State";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 
@@ -9,13 +9,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
  function renderApp(state){
     root.render(
         <React.StrictMode>
-            <App state={state} addPost={addPost}/>
+            <App state={state} dispatch={store.dispatch.bind(store)}/>
         </React.StrictMode>
     );
 }
-renderApp(State)
+renderApp(store.getState())
 
-subscribe(renderApp)
+store.subscribe(renderApp)
 
 
 
