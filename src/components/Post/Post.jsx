@@ -1,9 +1,9 @@
 import  React from 'react';
 
-export const Post = () => {
+export const Post = ({text}) => {
     return (
         <div className="post">
-    post
+            {text}
         </div>
     );
 };
