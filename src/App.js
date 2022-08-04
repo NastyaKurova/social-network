@@ -15,7 +15,7 @@ function App({state,dispatch}) {
                     <div className="wrapper-container-content">
                         <Routes>
                             <Route path="profile" exact element={<Profile profilePage={state.profilePage} dispatch={dispatch}/>}/>
-                            <Route path="dialogs" exact element={<Dialogs dialogsData={state.dialogsData} messagesData={state.messagesData}/>}/>
+                            <Route path="dialogs" exact element={<Dialogs dialogPage={state.dialogPage} dispatch={dispatch} />}/>
 
                         </Routes>
                     </div>
