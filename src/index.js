@@ -1,6 +1,6 @@
 import React from 'react';
 import reportWebVitals from './reportWebVitals';
-import store from "./State/State";
+import store from "./State/reduxStore";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 
@@ -9,13 +9,16 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
  function renderApp(state){
     root.render(
         <React.StrictMode>
-            <App state={state} dispatch={store.dispatch.bind(store)}/>
+            <App store={store} state={state} dispatch={store.dispatch.bind(store)}/>
         </React.StrictMode>
     );
 }
 renderApp(store.getState())
 
-store.subscribe(renderApp)
+store.subscribe(()=>{
+    const state=store.getState();
+    renderApp(state);
+})
 
 
 

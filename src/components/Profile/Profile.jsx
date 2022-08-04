@@ -2,13 +2,14 @@ import React from 'react';
 import styles from './Profile.module.scss';
 import {MyPosts} from "../MyPosts/MyPosts";
 import {UserInfo} from "./UserInfo/UserInfo";
+import {MyPostsContainer} from "../MyPosts/MyPostsContainer";
 
-export const Profile = ({profilePage,dispatch}) => {
+export const Profile = ({store}) => {
     return (
         <div className={styles.profile}>
 
             <UserInfo/>
-            <MyPosts profilePage={profilePage} dispatch={dispatch}/>
+            <MyPostsContainer store={store}/>
 
         </div>
     );

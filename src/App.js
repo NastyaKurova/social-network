@@ -2,10 +2,10 @@ import './App.scss';
 import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
-import {Dialogs} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
-function App({state,dispatch}) {
+function App({store}) {
     return (
         <BrowserRouter>
             <div className="wrapper">
@@ -14,8 +14,8 @@ function App({state,dispatch}) {
                     <Navbar></Navbar>
                     <div className="wrapper-container-content">
                         <Routes>
-                            <Route path="profile" exact element={<Profile profilePage={state.profilePage} dispatch={dispatch}/>}/>
-                            <Route path="dialogs" exact element={<Dialogs dialogPage={state.dialogPage} dispatch={dispatch} />}/>
+                            <Route path="profile" exact element={<Profile store={store}/>}/>
+                            <Route path="dialogs" exact element={<DialogsContainer store={store}/>}/>
 
                         </Routes>
                     </div>
