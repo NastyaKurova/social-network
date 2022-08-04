@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './MyPosts.module.scss';
 import {Post} from "../Post/Post";
-import {addPostAction, updatePostTextAction} from "../../State/State";
+import {addPostAction, updatePostTextAction} from "../../State/reducers/profileReducer";
 
 export const MyPosts = ({profilePage, dispatch}) => {
 

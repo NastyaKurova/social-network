@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Dialogs.module.scss';
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {addMessageAction, updateMessageTextAction} from "../../State/State";
+import {addMessageAction, updateMessageTextAction} from "../../State/reducers/dialogsReducer";
 
 
 export const Dialogs = ({dialogPage, dispatch}) => {
