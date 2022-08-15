@@ -1,7 +1,7 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
 
-const initialState={
+const initialState = {
     postData: [
         {id: 2, text: "Hi, my friend", likes: 5},
         {id: 2, text: "Have been to the cinema today", likes: 2},
@@ -10,10 +10,11 @@ const initialState={
     ],
     newPostText: ''
 }
-function profileReducer(state=initialState, action) {
+
+function profileReducer(state = initialState, action) {
     switch (action.type) {
         case ADD_POST:
-            return addPost(state, state.newPostText);
+            return addPost(state);
         case UPDATE_POST_TEXT:
             return updatePostText(state, action.text);
         default:
@@ -22,15 +23,13 @@ function profileReducer(state=initialState, action) {
     }
 }
 
-function addPost(state, text) {
-    const post = {id: 5, text: text, likes: 0}
-    state.postData.push(post)
-    return state;
+function addPost(state) {
+    const post = {id: 5, text: state.newPostText, likes: 0}
+    return {...state, postData: [...state.postData, post]};
 }
 
 function updatePostText(state, text) {
-    state.newPostText = text
-    return state;
+    return {...state, newPostText: text};
 }
 
 export function addPostAction() {

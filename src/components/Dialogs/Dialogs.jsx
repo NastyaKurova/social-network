@@ -4,7 +4,7 @@ import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 
 
-export const Dialogs = ({dialogsData,messagesData,newMessageText,addMessage, onMessageChange}) => {
+export const Dialogs = ({dialogsData, messagesData, newMessageText, addMessage, onMessageChange}) => {
 
     const handleChange = (e) => {
         return onMessageChange(e.target.value)
