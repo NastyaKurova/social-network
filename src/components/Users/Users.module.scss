@@ -1,0 +1,30 @@
+.user {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.userImg {
+  width: 50px;
+  height: 50px;
+  margin-right: 16px;
+
+  img {
+    width: 100%;
+  }
+}
+
+.userInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination {
+  cursor: pointer;
+  padding: 0 8px;
+}
+
+.currentPage {
+  font-weight: bold;
+}

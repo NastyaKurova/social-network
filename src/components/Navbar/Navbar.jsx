@@ -8,7 +8,8 @@ export const Navbar = () => {
             <ul>
                 <li className={styles.navbarLink}><StyledLink href="/profile" name="Profile"/></li>
                 <li className={styles.navbarLink}><StyledLink href="/dialogs" name="Dialogs"/></li>
-                <li className={styles.navbarLink}><StyledLink href="/news" name="NewsNews"/></li>
+                <li className={styles.navbarLink}><StyledLink href="/news" name="News"/></li>
+                <li className={styles.navbarLink}><StyledLink href="/users" name="Users"/></li>
                 <li className={styles.navbarLink}><StyledLink href="/musics" name="Musics"/></li>
                 <li className={styles.navbarLink}><StyledLink href="/settings" name="Settings"/></li>
             </ul>
