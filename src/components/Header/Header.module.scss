@@ -8,7 +8,7 @@
 }
 .headerContainer{
     display: grid;
-    grid-template-columns: 70px 250px;
+    grid-template-columns: 70px 250px 600px;
     padding: 0 100px;
     @media (max-width: 1024px) {
         padding: 0 16px;
@@ -21,4 +21,8 @@
 }
 .headerText{
     margin: 7px 0;
+}
+.headerLogin{
+    margin: 10px 0;
+    text-align: right;
 }
