@@ -3,12 +3,12 @@ import styles from './Profile.module.scss';
 import {UserInfo} from "./UserInfo/UserInfo";
 import MyPostsContainer from "../MyPosts/MyPostsContainer";
 
-export const Profile = ({store}) => {
+export const Profile = ({profile}) => {
     return (
         <div className={styles.profile}>
 
-            <UserInfo/>
-            <MyPostsContainer store={store}/>
+            <UserInfo profile={profile}/>
+            <MyPostsContainer/>
 
         </div>
     );

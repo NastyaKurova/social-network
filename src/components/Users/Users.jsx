@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Users.module.scss';
 import userDefault from "../../assets/userDefault.png";
+import {Link} from "react-router-dom";
 
 export const Users = ({
                           users,
@@ -52,7 +53,7 @@ const User = ({user, followUser, unFollowUser}) => {
                 <img src={user.photos.small ? user.photos.small : userDefault} alt="user"/>
             </div>
             <div>
-                <div><strong>{user.name}</strong></div>
+                <Link to={`/profile/${user.id}`}><strong>{user.name}</strong></Link>
                 <div>{user.status}</div>
                 {/*<span>{user.location.country}, </span><span>{user.location.city}</span>*/}
             </div>

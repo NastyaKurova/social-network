@@ -1,8 +1,10 @@
 import React from 'react';
 import styles from "./UserInfo.module.scss";
+import userDefault from "../../../assets/userDefault.png";
+import {Loader} from "../../common/Loader/Loader";
 
-
-export const UserInfo = () => {
+export const UserInfo = ({profile}) => {
+    if (!profile) return <Loader/>
     return <div className={styles.userInfo}>
         <div className={styles.blockImg}>
             <img className={styles.bgImg}
@@ -10,12 +12,10 @@ export const UserInfo = () => {
                  alt=""/>
             <div className={styles.userBlock}>
                 <img className={styles.userImg}
-                     src="https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png"
+                     src={profile.photos.large ? profile.photos.large : userDefault}
                      alt="profile"/>
-                <div className={styles.userName}>User User</div>
-                <div className={styles.userStatus}>Future is now, here it comes. Future is now, here it comes.
-                    Future is now, here it comes
-                </div>
+                <div className={styles.userName}>{profile.fullName}</div>
+                <div className={styles.userStatus}>{profile.lookingForAJobDescription}</div>
             </div>
         </div>
 
