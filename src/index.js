@@ -10,13 +10,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 function renderApp(state) {
     root.render(
-        <React.StrictMode>
             <BrowserRouter>
                 <Provider store={store}>
                 <App store={store} state={state} dispatch={store.dispatch.bind(store)}/>
                 </Provider>
             </BrowserRouter>
-        </React.StrictMode>
     );
 }
 

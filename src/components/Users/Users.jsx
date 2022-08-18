@@ -7,6 +7,7 @@ export const Users = ({
                           users,
                           currentPage,
                           totalPages,
+                          followedProgressArr,
                           pageSize,
                           selectPage,
                           selectPrevPage,
@@ -23,10 +24,6 @@ export const Users = ({
         pages = [currentPage - 1, currentPage - 2, currentPage]
     } else pages = [currentPage - 1, currentPage, currentPage + 1]
 
-    // for (let i = 1; i <= pageCount; i++) {
-    //     pages.push(i)
-    // }
-
     return (
         <div>
             <div>
@@ -37,16 +34,16 @@ export const Users = ({
                 <span className={styles.pagination} onClick={selectNextPage}>{'>'}</span>
 
             </div>
-            {users.map(user => <User key={user.id} user={user} followUser={followUser}
+            {users.map(user => <User key={user.id} user={user} followedProgressArr={followedProgressArr}
+                                     followUser={followUser}
                                      unFollowUser={unFollowUser}/>)}
         </div>
     );
 }
 
 
-const User = ({user, followUser, unFollowUser}) => {
+const User = ({user, followedProgressArr, followUser, unFollowUser}) => {
     const clickFollowButton = () => user.followed ? unFollowUser(user.id) : followUser(user.id)
-
     return <div className={styles.user}>
         <div className={styles.userInfo}>
             <div className={styles.userImg}>
@@ -58,9 +55,9 @@ const User = ({user, followUser, unFollowUser}) => {
                 {/*<span>{user.location.country}, </span><span>{user.location.city}</span>*/}
             </div>
         </div>
-
         <div>
-            <button onClick={clickFollowButton}>{user.followed ? 'Unfollow' : 'Follow'}</button>
+            <button disabled={followedProgressArr.some(id => id === user.id)}
+                    onClick={clickFollowButton}>{user.followed ? 'Unfollow' : 'Follow'}</button>
         </div>
 
     </div>

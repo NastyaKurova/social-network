@@ -2,66 +2,40 @@ import React from 'react';
 import {connect} from "react-redux";
 import {Users} from "./Users";
 import {
-    followAction, setUserIsLoadedAction,
-    setUserPageAction,
-    setUsersAction,
-    setUserTotalCountAction,
-    unFollowAction
+    followUser,
+    unFollowUser
 } from "../../State/reducers/usersReducer";
-import axios from "axios";
 import {Loader} from "../common/Loader/Loader";
+import {getUsers} from "../../State/reducers/usersReducer";
 
 export class UsersContainer extends React.Component {
 
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-            .then(res => {
-                this.props.setUsers(res.data.items);
-                this.props.setUserTotalCount(res.data.totalCount);
-                this.props.setUserIsLoaded(true);
-            })
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
 
     selectPage(page) {
-        this.props.setUserIsLoaded(false)
-        this.props.setUserPage(page)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`)
-            .then(res => {
-                this.props.setUsers(res.data.items);
-                this.props.setUserIsLoaded(true);
-            })
+        this.props.getUsers(page, this.props.pageSize)
     }
 
     selectPrevPage() {
-        this.props.setUserIsLoaded(false)
         const page = this.props.currentPage - 1;
-        this.props.setUserPage(page)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`)
-            .then(res => {
-                this.props.setUsers(res.data.items);
-                this.props.setUserIsLoaded(true);
-            })
+        this.props.getUsers(page, this.props.pageSize)
     }
 
     selectNextPage() {
-        this.props.setUserIsLoaded(false)
         const page = this.props.currentPage + 1;
-        this.props.setUserPage(page)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`)
-            .then(res => {
-                this.props.setUsers(res.data.items);
-                this.props.setUserIsLoaded(true);
-            })
+        this.props.getUsers(page, this.props.pageSize)
     }
 
     render() {
-        console.log(this.props.isLoaded)
         if (!this.props.isLoaded) return <Loader/>
         return (
             <Users users={this.props.users} currentPage={this.props.currentPage} pageSize={this.props.pageSize}
-                   totalPages={this.props.totalPages} setUserPage={this.props.setUserPage}
+                   followedProgressArr={this.props.followedProgressArr}
+                   totalPages={this.props.totalPages}
                    selectPage={(page) => this.selectPage(page)}
-                   setUsers={this.props.setUsers} selectPrevPage={() => this.selectPrevPage()}
+                   selectPrevPage={() => this.selectPrevPage()}
                    selectNextPage={() => this.selectNextPage()}
                    followUser={this.props.followUser}
                    unFollowUser={this.props.unFollowUser}/>
@@ -76,15 +50,8 @@ const mapStateToProps = (state) => {
         totalPages: state.usersPage.totalPages,
         pageSize: state.usersPage.pageSize,
         isLoaded: state.usersPage.isLoaded,
+        followedProgressArr: state.usersPage.followedProgressArr,
     })
 }
-const mapDispatchToProps = (dispatch) => ({
-    followUser: (userId) => dispatch(followAction(userId)),
-    unFollowUser: (userId) => dispatch(unFollowAction(userId)),
-    setUsers: (users) => dispatch(setUsersAction(users)),
-    setUserPage: (page) => dispatch(setUserPageAction(page)),
-    setUserTotalCount: (count) => dispatch(setUserTotalCountAction(count)),
-    setUserIsLoaded: (isLoaded) => dispatch(setUserIsLoadedAction(isLoaded)),
-})
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStateToProps, {followUser, unFollowUser, getUsers})(UsersContainer);

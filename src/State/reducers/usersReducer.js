@@ -1,9 +1,13 @@
+import {usersApi} from "../../api/api";
+
 const FOLLOW_USER = 'FOLLOW-USER'
 const UNFOLLOW_USER = 'UNFOLLOW-USER'
 const SET_USER = 'SET-USER'
 const SET_USER_PAGE = 'SET-USER-PAGE'
 const SET_USER_TOTAL_COUNT = 'SET-USER-TOTAL-COUNT'
 const SET_USER_IS_LOADED = 'SET-USER-IS-LOADED'
+const SET_USER_IS_FOLLOWED = 'SET_USER_IS_FOLLOWED'
+
 
 let initialState = {
     users: [],
@@ -11,6 +15,7 @@ let initialState = {
     totalPages: 19,
     pageSize: 20,
     isLoaded: false,
+    followedProgressArr: [],
 };
 
 function usersReducer(state = initialState, action) {
@@ -37,6 +42,15 @@ function usersReducer(state = initialState, action) {
             return ({...state, totalPages: action.count});
         case SET_USER_IS_LOADED:
             return ({...state, isLoaded: action.isLoaded});
+        case SET_USER_IS_FOLLOWED:
+            if (action.data.followedProgressArr) {
+                return ({
+                    ...state,
+                    followedProgressArr: state.followedProgressArr.filter(id => id !== action.data.userId)
+                });
+            } else {
+                return ({...state, followedProgressArr: [...state.followedProgressArr, action.data.userId]});
+            }
         default:
             return state;
 
@@ -66,6 +80,53 @@ export function setUserTotalCountAction(count) {
 
 export function setUserIsLoadedAction(isLoaded) {
     return {type: SET_USER_IS_LOADED, isLoaded}
+
 }
+
+export function setUserIsFollowedAction(followedProgressArr, userId) {
+    return {type: SET_USER_IS_FOLLOWED, data: {followedProgressArr, userId}}
+}
+
+export function getUsers(currentPage, pageSize) {
+    return (dispatch) => {
+        dispatch(setUserIsLoadedAction(false));
+        return usersApi.getUsers(currentPage, pageSize)
+            .then(res => {
+                dispatch(setUsersAction(res.data.items));
+                dispatch(setUserTotalCountAction(res.data.totalCount));
+                dispatch(setUserPageAction(currentPage));
+                dispatch(setUserIsLoadedAction(true));
+            })
+    }
+}
+
+export function followUser(userId) {
+    return (dispatch) => {
+        dispatch(setUserIsFollowedAction(false, userId));
+
+        return usersApi.followUser(userId)
+            .then(res => {
+                if (res.data.resultCode === 0) {
+                    dispatch(followAction(userId));
+                }
+                dispatch(setUserIsFollowedAction(true, userId));
+            })
+    }
+}
+
+export function unFollowUser(userId) {
+    return (dispatch) => {
+        dispatch(setUserIsFollowedAction(false, userId));
+
+        return usersApi.unFollowUser(userId)
+            .then(res => {
+                if (res.data.resultCode === 0) {
+                    dispatch(unFollowAction(userId));
+                }
+                dispatch(setUserIsFollowedAction(true, userId));
+            })
+    }
+}
+
 
 export default usersReducer;
