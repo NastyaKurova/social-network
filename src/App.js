@@ -5,6 +5,7 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import {LoginPage} from "./components/LoginPage/LoginPage";
 
 function App() {
     return (
@@ -15,9 +16,10 @@ function App() {
                 <div className="wrapper-container-content">
                     <Routes>
                         <Route path="profile/:userId" exact element={<ProfileContainer/>}/>
+                        <Route path="profile/" exact element={<ProfileContainer/>}/>
                         <Route path="dialogs" exact element={<DialogsContainer/>}/>
                         <Route path="users" exact element={<UsersContainer/>}/>
-
+                        <Route path="login" exact element={<LoginPage/>}/>
                     </Routes>
                 </div>
             </div>

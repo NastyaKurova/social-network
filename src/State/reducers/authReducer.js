@@ -13,7 +13,7 @@ let initialState = {
 function authReducer(state = initialState, action) {
     switch (action.type) {
         case SET_CURRENT_USER:
-            return ({...state, login: action.data.login, isAuth: true});
+            return ({...state, login: action.data.login, userId: action.data.userId, isAuth: true});
         default:
             return state;
 
@@ -25,15 +25,15 @@ export function setCurrentUser(id, login, email) {
 }
 
 export function getCurrentUser() {
-   return (dispatch)=>{
-     return  authApi.getAuthMe()
-           .then(res => {
-               if (res.data.resultCode === 0) {
-                   let {id, login, email} = res.data.data
-                   dispatch(setCurrentUser(id, login, email))
-               }
-           })
-   }
+    return (dispatch) => {
+        return authApi.getAuthMe()
+            .then(res => {
+                if (res.data.resultCode === 0) {
+                    let {id, login, email} = res.data.data
+                    dispatch(setCurrentUser(id, login, email))
+                }
+            })
+    }
 }
 
 export default authReducer;

@@ -5,10 +5,10 @@ import {Message} from "./Message/Message";
 
 
 export const Dialogs = ({dialogsData, messagesData, newMessageText, addMessage, onMessageChange}) => {
-
     const handleChange = (e) => {
         return onMessageChange(e.target.value)
     }
+
     return (
         <div className={styles.dialogsWrapper}>
             <h2>Dialogs</h2>
