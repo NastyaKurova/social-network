@@ -2,8 +2,9 @@ import React from 'react';
 import styles from "./UserInfo.module.scss";
 import userDefault from "../../../assets/userDefault.png";
 import {Loader} from "../../common/Loader/Loader";
+import ProfileStatus from "./ProfileStatus";
 
-export const UserInfo = ({profile}) => {
+export const UserInfo = ({profile,status,updateProfileStatus}) => {
     if (!profile) return <Loader/>
     return <div className={styles.userInfo}>
         <div className={styles.blockImg}>
@@ -16,6 +17,7 @@ export const UserInfo = ({profile}) => {
                      alt="profile"/>
                 <div className={styles.userName}>{profile.fullName}</div>
                 <div className={styles.userStatus}>{profile.lookingForAJobDescription}</div>
+                <ProfileStatus status={status} updateProfileStatus={updateProfileStatus}/>
             </div>
         </div>
 
