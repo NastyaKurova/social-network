@@ -14,10 +14,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return ({
-        addMessage: () => dispatch(addMessageAction()),
-        onMessageChange: (text) => {
-            return dispatch(updateMessageTextAction(text))
-        }
+        addMessage: (data) => dispatch(addMessageAction(data)),
     })
 }
 export default compose(

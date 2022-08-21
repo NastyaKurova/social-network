@@ -2,12 +2,10 @@ import React from 'react';
 import styles from './Dialogs.module.scss';
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
+import {DialogsForm} from "./DialogsForm";
 
 
-export const Dialogs = ({dialogsData, messagesData, newMessageText, addMessage, onMessageChange}) => {
-    const handleChange = (e) => {
-        return onMessageChange(e.target.value)
-    }
+export const Dialogs = ({dialogsData, messagesData, addMessage}) => {
 
     return (
         <div className={styles.dialogsWrapper}>
@@ -20,9 +18,7 @@ export const Dialogs = ({dialogsData, messagesData, newMessageText, addMessage, 
                     {messagesData.map(({id, text}) => <Message text={text} key={id}/>)}
                 </div>
                 <div>
-                    <textarea name="" id="" cols="30" rows="10" value={newMessageText}
-                              onChange={handleChange}></textarea>
-                    <button onClick={addMessage}>Send</button>
+                    <DialogsForm addMessage={addMessage}/>
                 </div>
             </div>
         </div>

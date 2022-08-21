@@ -5,7 +5,8 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import {LoginPage} from "./components/LoginPage/LoginPage";
+import LoginContainer from "./components/LoginPage/LoginContainer";
+
 
 function App() {
     return (
@@ -19,7 +20,7 @@ function App() {
                         <Route path="profile/" exact element={<ProfileContainer/>}/>
                         <Route path="dialogs" exact element={<DialogsContainer/>}/>
                         <Route path="users" exact element={<UsersContainer/>}/>
-                        <Route path="login" exact element={<LoginPage/>}/>
+                        <Route path="login" exact element={<LoginContainer/>}/>
                     </Routes>
                 </div>
             </div>
