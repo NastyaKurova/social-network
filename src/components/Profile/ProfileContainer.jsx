@@ -1,10 +1,11 @@
 import React from 'react';
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
-import {getProfile, getProfileStatus, updateProfileStatus} from "../../State/reducers/profileReducer";
+import {requestProfile, requestProfileStatus, updateProfileStatus} from "../../State/reducers/profileReducer";
 import {withRouter} from "../common/withRouter";
 import {withAuthRedirect} from "../common/hoc/withAuthRedirect";
 import {compose} from "redux";
+import {getAuthUserId, getProfile, getProfileStatus} from "../../State/selectors/profileSelectors";
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
@@ -12,8 +13,8 @@ class ProfileContainer extends React.Component {
         if (!userId) userId = this.props.authUserId;
         if (!userId) this.props.history.push("/login")
 
-        this.props.getProfile(userId)
-        setTimeout(()=>this.props.getProfileStatus(userId),1000)
+        this.props.requestProfile(userId)
+        setTimeout(() => this.props.requestProfileStatus(userId), 1000)
 
     }
 
@@ -26,13 +27,13 @@ class ProfileContainer extends React.Component {
 };
 
 const mapStateToProps = (state) => ({
-    profile: state.profilePage.profile,
-    status: state.profilePage.status,
-    authUserId:state.auth.id
+    profile: getProfile(state),
+    status: getProfileStatus(state),
+    authUserId: getAuthUserId(state)
 })
 
 export default compose(
-    connect(mapStateToProps, {getProfile, getProfileStatus, updateProfileStatus}),
+    connect(mapStateToProps, {requestProfile, requestProfileStatus, updateProfileStatus}),
     withRouter,
     withAuthRedirect
 )(ProfileContainer)

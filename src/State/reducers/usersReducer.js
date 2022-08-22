@@ -87,7 +87,7 @@ export function setUserIsFollowedAction(followedProgressArr, userId) {
     return {type: SET_USER_IS_FOLLOWED, data: {followedProgressArr, userId}}
 }
 
-export function getUsers(currentPage, pageSize) {
+export function requestUsers(currentPage, pageSize) {
     return (dispatch) => {
         dispatch(setUserIsLoadedAction(false));
         return usersApi.getUsers(currentPage, pageSize)

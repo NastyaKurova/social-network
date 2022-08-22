@@ -47,7 +47,7 @@ export function setUserProfileStatusAction(status) {
     return {type: SET_USER_PROFILE_STATUS, status}
 }
 
-export function getProfile(userId) {
+export function requestProfile(userId) {
     return (dispatch) => {
         return profileApi.getProfile(userId)
             .then(res => {
@@ -56,7 +56,7 @@ export function getProfile(userId) {
     }
 }
 
-export function getProfileStatus(userId) {
+export function requestProfileStatus(userId) {
     return (dispatch) => {
         return profileApi.getProfileStatus(userId)
             .then(res => {
