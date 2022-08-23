@@ -1,4 +1,5 @@
 import {usersApi} from "../../api/api";
+import {updateObjectArray} from "../../Utils/object-helpers";
 
 const FOLLOW_USER = 'FOLLOW-USER'
 const UNFOLLOW_USER = 'UNFOLLOW-USER'
@@ -22,17 +23,11 @@ function usersReducer(state = initialState, action) {
     switch (action.type) {
         case FOLLOW_USER:
             return ({
-                ...state, users: state.users.map(u => {
-                    if (u.id === action.userId) return {...u, followed: true}
-                    return u;
-                })
+                ...state, users: updateObjectArray(state.users, action.userId, 'id', {followed: true})
             });
         case UNFOLLOW_USER:
             return ({
-                ...state, users: state.users.map(u => {
-                    if (u.id === action.userId) return {...u, followed: false}
-                    return u;
-                })
+                ...state, users: updateObjectArray(state.users, action.userId, 'id', {followed: false})
             });
         case SET_USER:
             return ({...state, users: [...action.users]});
@@ -102,30 +97,26 @@ export function requestUsers(currentPage, pageSize) {
 
 export function followUser(userId) {
     return (dispatch) => {
-        dispatch(setUserIsFollowedAction(false, userId));
-
-        return usersApi.followUser(userId)
-            .then(res => {
-                if (res.data.resultCode === 0) {
-                    dispatch(followAction(userId));
-                }
-                dispatch(setUserIsFollowedAction(true, userId));
-            })
+        followUnFollowFlow(dispatch, userId, usersApi.followUser.bind(usersApi), followAction)
     }
 }
 
 export function unFollowUser(userId) {
     return (dispatch) => {
-        dispatch(setUserIsFollowedAction(false, userId));
-
-        return usersApi.unFollowUser(userId)
-            .then(res => {
-                if (res.data.resultCode === 0) {
-                    dispatch(unFollowAction(userId));
-                }
-                dispatch(setUserIsFollowedAction(true, userId));
-            })
+        followUnFollowFlow(dispatch, userId, usersApi.unFollowUser.bind(usersApi), unFollowAction)
     }
+}
+
+function followUnFollowFlow(dispatch, userId, apiMethod, actionMethod) {
+    dispatch(setUserIsFollowedAction(false, userId));
+
+    return apiMethod(userId)
+        .then(res => {
+            if (res.data.resultCode === 0) {
+                dispatch(actionMethod(userId));
+            }
+            dispatch(setUserIsFollowedAction(true, userId));
+        })
 }
 
 

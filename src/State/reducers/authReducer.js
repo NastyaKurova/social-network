@@ -1,6 +1,6 @@
 import {authApi} from "../../api/api";
 
-const SET_CURRENT_USER = 'SET-CURRENT-USER'
+const SET_CURRENT_USER = 'AUTH-SET-CURRENT-USER'
 
 
 let initialState = {
@@ -25,30 +25,25 @@ export function setCurrentUser({id, login, email, isAuth}) {
 }
 
 export function getCurrentUser() {
-    return (dispatch) => {
-        return authApi.getAuthMe()
-            .then(res => {
-                if (res.data.resultCode === 0) {
-                    let {id, login, email} = res.data.data
-                    dispatch(setCurrentUser({id, login, email, isAuth: true}))
-                } else {
+    return async (dispatch) => {
+        const res = await authApi.getAuthMe();
 
-                    dispatch(setCurrentUser(initialState))
-
-                }
-
-            })
+        if (res.data.resultCode === 0) {
+            let {id, login, email} = res.data.data
+            dispatch(setCurrentUser({id, login, email, isAuth: true}))
+        } else {
+            dispatch(setCurrentUser(initialState))
+        }
     }
 }
 
 export function logoutUser() {
-    return (dispatch) => {
-        return authApi.logout()
-            .then(res => {
-                if (res.data.resultCode === 0) {
-                    dispatch(getCurrentUser())
-                }
-            })
+    return async (dispatch) => {
+        const res = await authApi.logout();
+
+        if (res.data.resultCode === 0) {
+            dispatch(getCurrentUser())
+        }
     }
 }
 
@@ -56,13 +51,12 @@ export function loginUser(data) {
     data.rememberMe = true;
     data.captcha = true;
 
-    return (dispatch) => {
-        return authApi.login(data)
-            .then(res => {
-                if (res.data.resultCode === 0) {
-                    dispatch(getCurrentUser())
-                }
-            })
+    return async (dispatch) => {
+        const res = await authApi.login(data)
+
+        if (res.data.resultCode === 0) {
+            dispatch(getCurrentUser())
+        }
     }
 }
 
