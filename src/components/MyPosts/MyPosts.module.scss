@@ -8,6 +8,7 @@
 .postForm {
   width: 100%;
   min-height: 100px;
+  margin-bottom: 32px;
 
   textarea {
     width: 96%;
@@ -35,4 +36,18 @@
     }
   }
 
+}
+
+.post {
+  margin: 8px 0;
+}
+
+.postContent {
+  background: #dc473417;
+  padding: 16px;
+}
+.postText{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
 }

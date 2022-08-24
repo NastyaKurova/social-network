@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './MyPosts.module.scss';
-import {Post} from "../Post/Post";
+import {Post} from "./Post";
 import {PostForm} from "./PostForm";
 
 export const MyPosts = ({postData, addPost}) => {
@@ -11,7 +11,8 @@ export const MyPosts = ({postData, addPost}) => {
             <div className={styles.postForm}>
                 <PostForm addPost={addPost}/>
             </div>
-            {postData.map(({id, text}, index) => <Post key={index} text={text}/>)}
+            {postData.map(({id, text, time, likes}, index) => <Post key={index} text={text} time={time}
+                                                                    likes={likes}/>)}
 
         </div>
     );
