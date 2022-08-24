@@ -10,32 +10,10 @@
   min-height: 100px;
   margin-bottom: 32px;
 
-  textarea {
-    width: 96%;
-    height: 100px;
-    padding: 16px;
-
-    &:hover, &:focus, &:active, &:focus-visible {
-      border: 1px solid #dc4734;
-      outline: none;
-    }
-  }
-
   button {
     height: 48px;
     width: 108px;
-    background: #dc4734;
-    color: white;
-    border: none;
-    border-radius: 5px;
-
-    &:hover {
-      cursor: pointer;
-      background: #333333;
-      transition: 0.5s;
-    }
   }
-
 }
 
 .post {
@@ -46,8 +24,9 @@
   background: #dc473417;
   padding: 16px;
 }
-.postText{
-  display:flex;
+
+.postText {
+  display: flex;
   justify-content: space-between;
   align-items: center;
 }

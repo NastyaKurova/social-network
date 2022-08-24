@@ -1,0 +1,40 @@
+label {
+  display: block;
+  margin: 16px 0 8px 0;
+}
+
+input {
+  display: block;
+  padding: 16px;
+  margin-bottom: 16px;
+
+  &:hover, &:focus, &:active, &:focus-visible {
+    border: 2px solid #dc4734;
+    outline: none;
+  }
+}
+
+textarea {
+  width: 96%;
+  height: 100px;
+  padding: 16px;
+
+  &:hover, &:focus, &:active, &:focus-visible {
+    border: 1px solid #dc4734;
+    outline: none;
+  }
+}
+
+button {
+  padding: 8px 16px;
+  background: #dc4734;
+  color: white;
+  border: none;
+  border-radius: 5px;
+
+  &:hover {
+    cursor: pointer;
+    background: #333333;
+    transition: 0.5s;
+  }
+}

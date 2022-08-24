@@ -2,6 +2,7 @@ import React from 'react';
 import logo from "../../logo.svg";
 import styles from "./Header.module.scss";
 import {Link} from "react-router-dom";
+import "../forms.module.scss";
 
 
 export const Header = ({isAuth, login, logoutUser}) => {
@@ -10,10 +11,14 @@ export const Header = ({isAuth, login, logoutUser}) => {
             <div className={styles.headerContainer}>
                 <img className={styles.headerImg} src={logo} alt="logo"/>
                 <h1 className={styles.headerText}>Social network </h1>
-                <div className={styles.headerLogin}> {isAuth ? <div>
-                    <span>{login}</span>
-                    <button onClick={logoutUser}>logout</button>
-                </div> : <Link to="/login">login</Link>}</div>
+                <div className={styles.headerLogin}>
+                    {isAuth ?
+                        <div>
+                            <span>{login}</span>
+                            <button className={styles.headerLoginButton} onClick={logoutUser}>logout</button>
+                        </div>
+                        : <Link to="/login">login</Link>}
+                </div>
 
             </div>
         </header>

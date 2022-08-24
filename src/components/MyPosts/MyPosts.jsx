@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './MyPosts.module.scss';
 import {Post} from "./Post";
 import {PostForm} from "./PostForm";
+import "../forms.module.scss";
 
 export const MyPosts = ({postData, addPost}) => {
 
