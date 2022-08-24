@@ -3,9 +3,6 @@ import './App.scss';
 import {Navbar} from "./components/Navbar/Navbar";
 import {Route, Routes} from "react-router-dom";
 import {withRouter} from "./components/common/withRouter";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginContainer from "./components/LoginPage/LoginContainer";
 import {connect} from "react-redux";
@@ -13,7 +10,11 @@ import {connect} from "react-redux";
 import {Loader} from "./components/common/Loader/Loader";
 import {initApp} from "./State/reducers/appReducer";
 import {compose} from "redux";
+import {withSuspense} from "./components/common/hoc/withSuspense";
 
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
+const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
+const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
 
 class App extends React.Component {
     componentDidMount() {
@@ -29,10 +30,11 @@ class App extends React.Component {
                     <Navbar></Navbar>
                     <div className="wrapper-container-content">
                         <Routes>
-                            <Route path="profile/:userId" exact element={<ProfileContainer/>}/>
-                            <Route path="profile/" exact element={<ProfileContainer/>}/>
-                            <Route path="dialogs" exact element={<DialogsContainer/>}/>
-                            <Route path="users" exact element={<UsersContainer/>}/>
+                            <Route path="profile" exact element={withSuspense(ProfileContainer)}>
+                                <Route path=":userId" exact element={withSuspense(ProfileContainer)}/>
+                            </Route>
+                            <Route path="dialogs" exact element={withSuspense(DialogsContainer)}/>
+                            <Route path="users" exact element={withSuspense(UsersContainer)}/>
                             <Route path="login" exact element={<LoginContainer/>}/>
                         </Routes>
                     </div>
