@@ -85,4 +85,13 @@ export function saveProfilePhoto(photo) {
     }
 }
 
+export function saveProfile(data) {
+    return async (dispatch, getState) => {
+        const userId = getState().auth.id;
+        const res = await profileApi.setProfile(data)
+        if (res.data.resultCode === 0)
+            dispatch(requestProfile(userId))
+    }
+}
+
 export default profileReducer;

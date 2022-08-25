@@ -34,6 +34,9 @@ export const profileApi = {
         formData.append("image",photo)
         return instance.put(`profile/photo`, formData, {headers: {'Content-Type': 'multipart/form-data'}})
     },
+    setProfile(data) {
+        return instance.put(`profile/`, data)
+    },
 }
 
 export const authApi = {
@@ -45,5 +48,10 @@ export const authApi = {
     },
     login(data) {
         return instance.post(`/auth/login`, data)
+    }
+}
+export const securityApi = {
+    getCaptcha() {
+        return instance.get(`/security/get-captcha-url`)
     }
 }

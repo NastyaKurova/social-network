@@ -4,8 +4,9 @@ import userDefault from "../../../assets/userDefault.png";
 import {Loader} from "../../common/Loader/Loader";
 import ProfileStatus from "./ProfileStatus";
 import updateIco from "../../../assets/icos/update.svg";
+import {UserData} from "./UserData";
 
-export const UserInfo = ({profile, status, updateProfileStatus, isOwner, savePhoto}) => {
+export const UserInfo = ({profile, status, updateProfileStatus, isOwner, savePhoto,saveProfile}) => {
     if (!profile) return <Loader/>
     const changePhoto = (event) => {
         const fileArr = event.target.files
@@ -21,22 +22,20 @@ export const UserInfo = ({profile, status, updateProfileStatus, isOwner, savePho
                     <img className={styles.userImg}
                          src={profile.photos.large ? profile.photos.large : userDefault}
                          alt="profile"/>
-                    <div className={styles.userImgOverload}>
+                    {isOwner ? <div className={styles.userImgOverload}>
 
                         <label htmlFor="file" className={styles.userImgLabel}>
                             <div className={styles.userImgLabelIco}><img src={updateIco} alt=""/></div>
-
-                            <input type="file" onChange={changePhoto}/>
+                            <input className={styles.userImgInput} type="file" onChange={changePhoto}/>
                         </label>
 
-                    </div>
+                    </div> : null}
+
                 </div>
 
-                <div className={styles.userName}>{profile.fullName}</div>
-                <div className={styles.userStatus}>{profile.lookingForAJobDescription}</div>
-                <ProfileStatus status={status} updateProfileStatus={updateProfileStatus}/>
             </div>
+            <ProfileStatus status={status} updateProfileStatus={updateProfileStatus}/>
         </div>
-
+        <UserData profile={profile} isOwner={isOwner} saveProfile={saveProfile}/>
     </div>
 }

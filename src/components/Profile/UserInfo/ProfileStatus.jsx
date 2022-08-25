@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './UserInfo.module.scss';
 
 class ProfileStatus extends React.Component {
     state = {
@@ -23,7 +24,7 @@ class ProfileStatus extends React.Component {
     }
 
     render() {
-        return <div>
+        return <div className={styles.profileStatus}>
             {}
             {this.state.editMode
                 ?
