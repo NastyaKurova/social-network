@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
 import {Navbar} from "./components/Navbar/Navbar";
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, Navigate} from "react-router-dom";
 import {withRouter} from "./components/common/withRouter";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginContainer from "./components/LoginPage/LoginContainer";
@@ -30,6 +30,7 @@ class App extends React.Component {
                     <Navbar></Navbar>
                     <div className="wrapper-container-content">
                         <Routes>
+                            <Route path="/" exact element={<Navigate to={'/profile'}/>}/>
                             <Route path="profile" exact element={withSuspense(ProfileContainer)}>
                                 <Route path=":userId" exact element={withSuspense(ProfileContainer)}/>
                             </Route>
