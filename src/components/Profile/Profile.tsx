@@ -1,5 +1,4 @@
 import React, {FC} from 'react';
-// @ts-ignore
 import styles from './Profile.module.scss';
 import {UserInfo} from "./UserInfo/UserInfo";
 import MyPostsContainer from "../MyPosts/MyPostsContainer";

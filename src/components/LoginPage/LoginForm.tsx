@@ -1,7 +1,6 @@
 import React, {FC} from 'react';
 import {Field, Form, Formik} from "formik";
 import "../forms.module.scss";
-// @ts-ignore
 import styles from "./login.module.scss";
 
 type LoginFormPropsType = {

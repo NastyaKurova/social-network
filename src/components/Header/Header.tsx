@@ -1,7 +1,5 @@
 import React, {FC} from 'react';
-// @ts-ignore
 import logo from "../../logo.svg";
-// @ts-ignore
 import styles from "./Header.module.scss";
 import {Link} from "react-router-dom";
 import "../forms.module.scss";

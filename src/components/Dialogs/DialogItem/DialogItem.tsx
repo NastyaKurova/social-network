@@ -1,5 +1,4 @@
 import React, {FC} from 'react';
-// @ts-ignore
 import styles from './DialogItem.module.scss';
 import {NavLink} from "react-router-dom";
 

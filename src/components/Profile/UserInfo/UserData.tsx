@@ -1,5 +1,4 @@
 import React, {FC, useState} from 'react';
-// @ts-ignore
 import styles from "./UserInfo.module.scss";
 import {Field, Form, Formik} from "formik";
 import {ContactsProfileType, ProfileDataType} from "../../../types/types";

@@ -1,5 +1,4 @@
 import React, {FC} from 'react';
-// @ts-ignore
 import styles from './MyPosts.module.scss';
 import {PostDataItemType} from "../../types/types";
 

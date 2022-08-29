@@ -1,7 +1,5 @@
 import React, {FC} from 'react';
-// @ts-ignore
 import styles from './Users.module.scss';
-// @ts-ignore
 import userDefault from "../../assets/userDefault.png";
 import {Link} from "react-router-dom";
 import {Pagination} from "../Pagination/Pagination";

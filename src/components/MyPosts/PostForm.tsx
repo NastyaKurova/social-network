@@ -1,6 +1,5 @@
 import React, {FC} from 'react';
 import {Field, Form, Formik} from "formik";
-// @ts-ignore
 import styles from './MyPosts.module.scss';
 
 type PostFormPropsType = { addPost: ({postText}: { postText: string }) => void }
@@ -21,7 +20,7 @@ export const PostForm: FC<PostFormPropsType> = ({addPost}) => {
                     placeholder="text"
                     type="text"
                 />
-                <button className={styles.buttonSend} type="submit">Add Post</button>
+                <button type="submit">Add Post</button>
             </Form>
         </Formik>
     )

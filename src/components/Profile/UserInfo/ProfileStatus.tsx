@@ -1,5 +1,4 @@
 import React, {ChangeEvent} from 'react';
-// @ts-ignore
 import styles from './UserInfo.module.scss';
 
 type ProfileStatusPropsType = {
@@ -31,13 +30,12 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType> {
 
     render() {
         return <div className={styles.profileStatus}>
-            {}
             {this.state.editMode
                 ?
-                <div><input onBlur={this.deactivateEditMode} autoFocus={true} onChange={this.changeStatus}
+                <div ><input role="status-input" onBlur={this.deactivateEditMode} autoFocus={true} onChange={this.changeStatus}
                             value={this.state.status} type="text"/>
                 </div>
-                : <div
+                : <div role="status"
                     onDoubleClick={this.activateEditMode}>{this.props.status ? this.props.status : 'empty status'}</div>}
 
 

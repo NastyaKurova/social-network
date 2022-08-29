@@ -1,12 +1,28 @@
-import React from 'react';
+import React, {FC} from 'react';
 import styles from "./UserInfo.module.scss";
 import userDefault from "../../../assets/userDefault.png";
 import {Loader} from "../../common/Loader/Loader";
 import ProfileStatus from "./ProfileStatus";
 import updateIco from "../../../assets/icos/update.svg";
 import {UserData} from "./UserData";
+import {ProfileDataType} from "../../../types/types";
 
-export const UserInfo = ({profile, status, updateProfileStatus, isOwner, savePhoto,saveProfile}) => {
+type UserInfoPropsType = {
+    profile: ProfileDataType,
+    status: string,
+    isOwner: boolean,
+    saveProfile: (data: ProfileDataType) => void,
+    savePhoto: (photo: File) => void,
+    updateProfileStatus: (status: string) => void,
+}
+export const UserInfo: FC<UserInfoPropsType> = ({
+                                                    profile,
+                                                    status,
+                                                    updateProfileStatus,
+                                                    isOwner,
+                                                    savePhoto,
+                                                    saveProfile
+                                                }) => {
     if (!profile) return <Loader/>
     const changePhoto = (event) => {
         const fileArr = event.target.files
@@ -26,7 +42,7 @@ export const UserInfo = ({profile, status, updateProfileStatus, isOwner, savePho
 
                         <label htmlFor="file" className={styles.userImgLabel}>
                             <div className={styles.userImgLabelIco}><img src={updateIco} alt=""/></div>
-                            <input className={styles.userImgInput} type="file" onChange={changePhoto}/>
+                            <input type="file" onChange={changePhoto}/>
                         </label>
 
                     </div> : null}
