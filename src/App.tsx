@@ -1,17 +1,17 @@
 import React from 'react';
 import './App.scss';
 import {Navbar} from "./components/Navbar/Navbar";
-import {Route, Routes, Navigate} from "react-router-dom";
+import {Route, Routes, Navigate, BrowserRouter} from "react-router-dom";
 import {withRouter} from "./components/common/withRouter";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginContainer from "./components/LoginPage/LoginContainer";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 
 import {Loader} from "./components/common/Loader/Loader";
 import {initApp} from "./State/reducers/appReducer";
 import {compose} from "redux";
 import {withSuspense} from "./components/common/hoc/withSuspense";
-import {AppStateType} from "./State/reduxStore";
+import store, {AppStateType} from "./State/reduxStore";
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
@@ -56,6 +56,18 @@ class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType> 
 const mapStateToProps = (state) => ({
     isInitialized: state.initApp.isInitialized
 })
-export default compose<React.ComponentType>(
+let AppContainer = compose<React.ComponentType>(
     withRouter,
     connect<MapStateToPropsType, MapDispatchToPropsType, AppStateType>(mapStateToProps, {initApp}))(App)
+
+export function AppWrapper() {
+    return <BrowserRouter>
+        <Provider store={store}>
+            <AppContainer/>
+
+        </Provider>
+    </BrowserRouter>
+}
+
+
+export default AppWrapper
