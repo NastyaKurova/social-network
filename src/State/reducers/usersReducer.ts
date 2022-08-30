@@ -1,6 +1,6 @@
 import {usersApi} from "../../api/userApi";
 import {updateObjectArray} from "../../Utils/object-helpers";
-import {ResponseType, ResultCodesEnum, UsersType} from "../../types/types";
+import {ResponseType, ResultCodesEnum, UsersFilterType, UsersType} from "../../types/types";
 import {DispatchType, InferActionsTypes, ThunkType} from "../reduxStore";
 
 
@@ -13,6 +13,7 @@ let initialState = {
     pageSize: 20,
     isLoaded: false,
     followedProgressArr: [] as Array<number>,  // arr of users id
+    filter: {term: '', friend: 'All'} as UsersFilterType
 };
 type ActionsTypes = InferActionsTypes<typeof actions>
 
@@ -28,6 +29,8 @@ function usersReducer(state = initialState, action: ActionsTypes): InitialStateT
             });
         case 'users/SET_USER':
             return ({...state, users: [...action.users]});
+        case 'users/SET_FILTER':
+            return ({...state, filter: {...action.payload.filter}});
         case 'users/SET_USER_PAGE':
             return ({...state, currentPage: action.page});
         case 'users/SET_USER_TOTAL_COUNT':
@@ -71,15 +74,23 @@ export const actions = {
     setUserIsFollowed(followingFinished: boolean, userId: number) {
         return {type: 'users/SET_USER_IS_FOLLOWED', payload: {followingFinished, userId}} as const
     },
+    setFilter(filter: UsersFilterType) {
+        return {type: 'users/SET_FILTER', payload: {filter}} as const
+    },
 }
 
 type UsersThunkType = ThunkType<ActionsTypes>
 type UsersDispatchType = DispatchType<ActionsTypes>
 
-export function requestUsers(currentPage: number, pageSize: number): UsersThunkType {
+export function requestUsers(currentPage: number, pageSize: number, filter: UsersFilterType): UsersThunkType {
     return (dispatch) => {
         dispatch(actions.setUserIsLoaded(false));
-        return usersApi.getUsers(currentPage, pageSize)
+        dispatch(actions.setFilter(filter));
+        const formattedFilter = {...filter}
+        if (filter.friend === 'true') formattedFilter.friend = true
+        else if (filter.friend === 'false') formattedFilter.friend = false
+        else formattedFilter.friend = 'no null'
+        return usersApi.getUsers(currentPage, pageSize, formattedFilter)
             .then(res => {
                 dispatch(actions.setUsers(res.items));
                 dispatch(actions.setUserTotalCount(res.totalCount));
@@ -91,13 +102,13 @@ export function requestUsers(currentPage: number, pageSize: number): UsersThunkT
 
 export function followUser(userId: number): UsersThunkType {
     return async (dispatch) => {
-       await followUnFollowFlow(dispatch, userId, usersApi.followUser.bind(usersApi), actions.follow)
+        await followUnFollowFlow(dispatch, userId, usersApi.followUser.bind(usersApi), actions.follow)
     }
 }
 
 export function unFollowUser(userId: number): UsersThunkType {
     return async (dispatch) => {
-       await followUnFollowFlow(dispatch, userId, usersApi.unFollowUser.bind(usersApi), actions.unFollow)
+        await followUnFollowFlow(dispatch, userId, usersApi.unFollowUser.bind(usersApi), actions.unFollow)
     }
 }
 

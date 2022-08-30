@@ -16,6 +16,10 @@ export type UsersType = {
     status: string
     uniqueUrlName?: string
 };
+export type UsersFilterType = {
+    term: string,
+    friend: string | boolean
+}
 export type CurrentUserType = {
     login: string | null,
     id: number | null,

@@ -15,7 +15,7 @@ import store, {AppStateType} from "./State/reduxStore";
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
-const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
+const UsersContainer = React.lazy(() => import('./components/Users/UserPage'));
 
 type MapStateToPropsType = {
     isInitialized: boolean

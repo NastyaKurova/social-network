@@ -15,6 +15,7 @@ beforeEach(() => {
         pageSize: 20,
         isLoaded: false,
         followedProgressArr: [] as Array<number>,  // arr of users id
+        filter: {term: '', friend: 'All'}
     }
 })
 

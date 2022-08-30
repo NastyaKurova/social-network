@@ -18,3 +18,6 @@ export const getIsLoaded = (state: AppStateType) => {
 export const getFollowedProgressArr = (state: AppStateType) => {
     return state.usersPage.followedProgressArr
 }
+export const getUsersFilter = (state: AppStateType) => {
+    return state.usersPage.filter
+}
