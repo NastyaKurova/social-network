@@ -14,7 +14,7 @@ export type UsersType = {
     name: string
     photos: PostPhotosType
     status: string
-    uniqueUrlName: string
+    uniqueUrlName?: string
 };
 export type CurrentUserType = {
     login: string | null,

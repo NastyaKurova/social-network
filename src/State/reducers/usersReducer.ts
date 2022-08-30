@@ -4,7 +4,7 @@ import {ResponseType, ResultCodesEnum, UsersType} from "../../types/types";
 import {DispatchType, InferActionsTypes, ThunkType} from "../reduxStore";
 
 
-type InitialStateType = typeof initialState;
+export type InitialStateType = typeof initialState;
 
 let initialState = {
     users: [] as Array<UsersType>,
@@ -48,7 +48,7 @@ function usersReducer(state = initialState, action: ActionsTypes): InitialStateT
     }
 }
 
-const actions = {
+export const actions = {
     follow(userId: number) {
         return {type: 'users/FOLLOW_USER', userId} as const
     },
@@ -91,13 +91,13 @@ export function requestUsers(currentPage: number, pageSize: number): UsersThunkT
 
 export function followUser(userId: number): UsersThunkType {
     return async (dispatch) => {
-        followUnFollowFlow(dispatch, userId, usersApi.followUser.bind(usersApi), actions.follow)
+       await followUnFollowFlow(dispatch, userId, usersApi.followUser.bind(usersApi), actions.follow)
     }
 }
 
 export function unFollowUser(userId: number): UsersThunkType {
     return async (dispatch) => {
-        followUnFollowFlow(dispatch, userId, usersApi.unFollowUser.bind(usersApi), actions.unFollow)
+       await followUnFollowFlow(dispatch, userId, usersApi.unFollowUser.bind(usersApi), actions.unFollow)
     }
 }
 
