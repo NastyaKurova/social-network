@@ -9,7 +9,7 @@ export type InitialStateType = typeof initialState;
 let initialState = {
     users: [] as Array<UsersType>,
     currentPage: 1,
-    totalPages: 19,
+    totalCount: 19,
     pageSize: 20,
     isLoaded: false,
     followedProgressArr: [] as Array<number>,  // arr of users id
@@ -34,7 +34,7 @@ function usersReducer(state = initialState, action: ActionsTypes): InitialStateT
         case 'users/SET_USER_PAGE':
             return ({...state, currentPage: action.page});
         case 'users/SET_USER_TOTAL_COUNT':
-            return ({...state, totalPages: action.count});
+            return ({...state, totalCount: action.count});
         case 'users/SET_USER_IS_LOADED':
             return ({...state, isLoaded: action.isLoaded});
         case 'users/SET_USER_IS_FOLLOWED':
@@ -89,7 +89,7 @@ export function requestUsers(currentPage: number, pageSize: number, filter: User
         const formattedFilter = {...filter}
         if (filter.friend === 'true') formattedFilter.friend = true
         else if (filter.friend === 'false') formattedFilter.friend = false
-        else formattedFilter.friend = 'no null'
+        else formattedFilter.friend = null
         return usersApi.getUsers(currentPage, pageSize, formattedFilter)
             .then(res => {
                 dispatch(actions.setUsers(res.items));

@@ -11,7 +11,7 @@ beforeEach(() => {
             {id: 3, name: 'Nax', followed: true, photos: {large: '', small: ''}, status: "pfff"},
         ],
         currentPage: 1,
-        totalPages: 19,
+        totalCount: 19,
         pageSize: 20,
         isLoaded: false,
         followedProgressArr: [] as Array<number>,  // arr of users id
