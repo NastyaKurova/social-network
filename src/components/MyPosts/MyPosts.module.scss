@@ -1,3 +1,5 @@
+@use "../../styles/colors.module";
+
 .myPosts {
   grid-area: myPosts;
   box-shadow: 0 0 8px 1px rgb(0 0 0 / 20%);
@@ -21,7 +23,7 @@
 }
 
 .postContent {
-  background: #dc473417;
+  background: colors.$main-orange-03;
   padding: 16px;
 }
 

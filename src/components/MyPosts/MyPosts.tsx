@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import styles from './MyPosts.module.scss';
 import {Post} from "./Post";
 import {PostForm} from "./PostForm";
-import "../forms.module.scss";
+import "../../styles/forms.module.scss";
 import {PostDataType} from "../../types/types";
 
 type AddPostPropsType = { addPost: ({postText}: { postText: string }) => void }

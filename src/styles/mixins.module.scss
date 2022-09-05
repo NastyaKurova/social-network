@@ -1,0 +1,6 @@
+@mixin activeForm($color, $borderWidth) {
+  &:hover, &:focus, &:active, &:focus-visible {
+    border: $borderWidth solid $color;
+    outline: none;
+  }
+}

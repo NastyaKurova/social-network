@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import logo from "../../logo.svg";
 import styles from "./Header.module.scss";
 import {Link} from "react-router-dom";
-import "../forms.module.scss";
+import "../../styles/forms.module.scss";
 
 type HeaderPropsType={
     isAuth:boolean

@@ -20,10 +20,10 @@ type ActionsTypes = InferActionsTypes<typeof actions>
 function chatReducer(state = initialState, action: ActionsTypes): InitialStateType {
     switch (action.type) {
         case 'chat/SET-MESSAGES':
+            let messagesWithId = [...action.payload.messages.map(m => ({...m, id: v1()}))]
             return ({
-                ...state, messages: [...state.messages, ...action.payload.messages.map(
-                    m => ({...m, id: v1()})
-                )].filter((m, index, array) => index >= array.length - 100)
+                ...state,
+                messages: [...state.messages, ...messagesWithId].filter((m, index, array) => index >= array.length - 100)
             })
         case 'chat/CLEAR-MESSAGES':
             return ({...state, messages: []})
@@ -68,7 +68,7 @@ function statusChangedHandlerCreator(dispatch: Dispatch) {
             dispatch(actions.setStatus(status))
         }
     }
-    return _newMessageHandler
+    return _statusChangedHandler
 }
 
 export function startMessageListening(): ChatThunkType {

@@ -32,13 +32,12 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType> {
         return <div className={styles.profileStatus}>
             {this.state.editMode
                 ?
-                <div ><input role="status-input" onBlur={this.deactivateEditMode} autoFocus={true} onChange={this.changeStatus}
+                <div><input role="status-input" onBlur={this.deactivateEditMode} autoFocus={true}
+                            onChange={this.changeStatus}
                             value={this.state.status} type="text"/>
                 </div>
                 : <div role="status"
-                    onDoubleClick={this.activateEditMode}>{this.props.status ? this.props.status : 'empty status'}</div>}
-
-
+                       onDoubleClick={this.activateEditMode}>{this.props.status ? this.props.status : 'empty status'}</div>}
         </div>
     }
 }

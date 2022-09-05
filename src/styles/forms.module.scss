@@ -1,0 +1,44 @@
+@use "./colors.module";
+@use "./mixins.module";
+
+label {
+  display: block;
+  margin: 16px 0 8px 0;
+}
+
+input {
+  display: block;
+  padding: 16px;
+  margin-bottom: 16px;
+  @include mixins.activeForm(colors.$main-orange, 2px)
+}
+
+textarea {
+  width: 96%;
+  height: 100px;
+  padding: 16px;
+
+  @include mixins.activeForm(colors.$main-orange, 2px)
+
+}
+
+button {
+  padding: 8px 16px;
+  background: colors.$main-orange;
+  color: white;
+  border: none;
+  border-radius: 5px;
+
+  &:hover {
+    cursor: pointer;
+    background: colors.$main-active-button;
+    transition: 0.5s;
+  }
+}
+
+select {
+  margin-bottom: 16px;
+  padding: 8px;
+
+  @include mixins.activeForm(colors.$main-orange, 1px)
+}

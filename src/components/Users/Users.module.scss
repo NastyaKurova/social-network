@@ -1,9 +1,11 @@
+@use "../../styles/colors.module";
+
 .user {
   display: flex;
   justify-content: space-between;
   padding: 8px 0;
   align-items: center;
-  border-bottom: 1px dashed #80808042;
+  border-bottom: 1px dashed colors.$light-gray;
 }
 
 .userImg {
@@ -22,3 +24,9 @@
   align-items: center;
 }
 
+.filter {
+  padding: 16px;
+  background: colors.$light-purple;
+  border-radius: 5px;
+  margin: 16px 0;
+}

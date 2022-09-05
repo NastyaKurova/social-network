@@ -1,4 +1,6 @@
-.navbar{
+@use "../../styles/colors.module";
+
+.navbar {
   grid-area: navbar;
   box-shadow: 0 0 8px 1px rgb(0 0 0 / 20%);
   background: white;
@@ -7,26 +9,31 @@
   max-height: 394px;
 
   .navbarLinkActive {
-    color: #dc4734;
+    color: colors.$main-orange;
   }
-  a{
+
+  a {
     text-decoration: none;
     color: black;
-    &:hover{
+
+    &:hover {
       cursor: pointer;
-      color: #dc4734 ;
+      color: colors.$main-orange;
     }
   }
-  ul{
+
+  ul {
     margin: 0;
     padding: 0;
-    li{
+
+    li {
       list-style-type: none;
     }
 
   }
 
 }
-.navbarLink{
+
+.navbarLink {
   padding: 22px 0;
 }

@@ -21,7 +21,6 @@ const Chat: FC = () => {
     useEffect(() => {
         dispatch(startMessageListening())
         return () => {
-            console.log('leave')
             dispatch(stopMessageListening())
         }
     }, [])
@@ -74,7 +73,7 @@ const AddMessageForm: FC = () => {
     const sendMessageHandler = (values) => {
         sendMessage(values)
     }
-    return <div className={styles.form}>
+    return <div className={styles.formChat}>
         <Formik
             initialValues={{
                 message: '',
@@ -82,12 +81,13 @@ const AddMessageForm: FC = () => {
             onSubmit={sendMessageHandler}
             enableReinitialize={true}
         >
-            <Form>
+            <Form className={styles.form}>
                 <Field
                     id="message"
                     name="message"
                     type="text"
                     placeholder="message text"
+                    as="textarea"
                 />
                 <button type="submit" disabled={status !== 'ready'}>Send</button>
             </Form>

@@ -1,6 +1,7 @@
 import {Field, Form, Formik} from "formik";
 import React, {FC} from "react";
 import {UsersFilterType} from "../../types/types";
+import styles from "./Users.module.scss";
 
 type UsersFormFilterPropsType = {
     filter: UsersFilterType
@@ -8,7 +9,7 @@ type UsersFormFilterPropsType = {
 }
 export const UsersFormFilter: FC<UsersFormFilterPropsType> = React.memo(({findUsers, filter}) => {
 
-    return <>
+    return <div className={styles.filter}>
         <Formik
             initialValues={{
                 term: filter.term,
@@ -33,5 +34,5 @@ export const UsersFormFilter: FC<UsersFormFilterPropsType> = React.memo(({findUs
                 <button type="submit">Find</button>
             </Form>
         </Formik>
-    </>
+    </div>
 })
