@@ -16,6 +16,7 @@ import store, {AppStateType} from "./State/reduxStore";
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
 const UsersContainer = React.lazy(() => import('./components/Users/UserPage'));
+const ChatPage = React.lazy(() => import('./components/Chat/ChatPage'));
 
 type MapStateToPropsType = {
     isInitialized: boolean
@@ -43,6 +44,7 @@ class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType> 
                                 <Route path=":userId" element={withSuspense(ProfileContainer)}/>
                             </Route>
                             <Route path="dialogs" element={withSuspense(DialogsContainer)}/>
+                            <Route path="chat" element={withSuspense(ChatPage)}/>
                             <Route path="users" element={withSuspense(UsersContainer)}/>
                             <Route path="login" element={<LoginContainer/>}/>
                         </Routes>

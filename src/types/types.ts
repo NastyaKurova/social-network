@@ -43,3 +43,13 @@ export enum ResultCodesCaptureEnum {
 
 export type DialogsDataType = { id: number, name: string }
 export type MessagesDataType = { id: number, text: string }
+export type ChatMessageType = {
+    id?: string,
+    message: string,
+    photo: string,
+    userId: number,
+    userName: string
+}
+export type ChatStatusType = 'ready' | 'pending' | 'error';
+export type MessageSubscriberType = (messages: ChatMessageType[]) => void
+export type StatusSubscriberType = (status: ChatStatusType) => void

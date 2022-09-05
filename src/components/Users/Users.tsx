@@ -36,7 +36,6 @@ export const Users: FC = () => {
         if (!!filerPage) actualPage = Number(filerPage)
         if (!!filerTerm) actualFilter = {...actualFilter, term: filerTerm}
         if (!!filerFriend) actualFilter = {...actualFilter, friend: filerFriend}
-console.log(filerFriend,actualFilter)
         dispatch(requestUsers(actualPage, pageSize, actualFilter))
     }, [])
 

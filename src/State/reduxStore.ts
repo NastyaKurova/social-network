@@ -5,6 +5,7 @@ import usersReducer from "./reducers/usersReducer";
 import authReducer from "./reducers/authReducer";
 import thunkMiddleware, {ThunkAction} from "redux-thunk";
 import appReducer from "./reducers/appReducer";
+import chatReducer from "./reducers/chatReducer";
 
 let rootReducer = combineReducers({
     dialogPage: dialogsReducer,
@@ -12,6 +13,7 @@ let rootReducer = combineReducers({
     usersPage: usersReducer,
     auth: authReducer,
     initApp: appReducer,
+    chat: chatReducer,
 })
 
 type RootReducerType = typeof rootReducer;
