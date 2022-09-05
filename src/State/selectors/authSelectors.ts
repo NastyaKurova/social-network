@@ -9,3 +9,6 @@ export const getLogin = (state: AppStateType) => {
 export const getCaptureUrl = (state: AppStateType) => {
     return state.auth.captureUrl
 }
+export const getIsInitialized = (state: AppStateType) => {
+    return state.initApp.isInitialized
+}

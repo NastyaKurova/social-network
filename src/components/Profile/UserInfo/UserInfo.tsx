@@ -50,7 +50,7 @@ export const UserInfo: FC<UserInfoPropsType> = ({
                 </div>
 
             </div>
-            <ProfileStatus status={status} updateProfileStatus={updateProfileStatus}/>
+            <ProfileStatus status={status} updateProfileStatus={updateProfileStatus} isOwner={isOwner}/>
         </div>
         <UserData profile={profile} isOwner={isOwner} saveProfile={saveProfile}/>
     </div>

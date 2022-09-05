@@ -3,13 +3,18 @@ import logo from "../../logo.svg";
 import styles from "./Header.module.scss";
 import {Link} from "react-router-dom";
 import "../../styles/forms.module.scss";
+import {useDispatch, useSelector} from "react-redux";
+import {getAuth, getLogin} from "../../State/selectors/authSelectors";
+import {logoutUser} from "../../State/reducers/authReducer";
 
-type HeaderPropsType={
-    isAuth:boolean
-    login:string
-    logoutUser:()=>void
-}
-export const Header:FC<HeaderPropsType> = ({isAuth, login, logoutUser}) => {
+const Header: FC = () => {
+    const dispatch = useDispatch<any>()
+    const isAuth: boolean = useSelector(getAuth)
+    const login: string = useSelector(getLogin)
+    const logoutCurrentUser = (): void => {
+        dispatch(logoutUser())
+    }
+
     return (
         <header className={styles.header}>
             <div className={styles.headerContainer}>
@@ -19,7 +24,7 @@ export const Header:FC<HeaderPropsType> = ({isAuth, login, logoutUser}) => {
                     {isAuth ?
                         <div>
                             <span>{login}</span>
-                            <button className={styles.headerLoginButton} onClick={logoutUser}>logout</button>
+                            <button className={styles.headerLoginButton} onClick={logoutCurrentUser}>logout</button>
                         </div>
                         : <Link to="/login">login</Link>}
                 </div>
@@ -28,3 +33,4 @@ export const Header:FC<HeaderPropsType> = ({isAuth, login, logoutUser}) => {
         </header>
     );
 };
+export default Header;

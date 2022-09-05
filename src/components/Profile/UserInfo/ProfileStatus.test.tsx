@@ -4,18 +4,33 @@ import ProfileStatus from "./ProfileStatus";
 describe("Test Profile status component", () => {
     test("show status from props", () => {
         const status = 'profile status'
-        render(<ProfileStatus status={status} updateProfileStatus={() => {
+        render(<ProfileStatus status={status} isOwner={true} updateProfileStatus={() => {
         }}/>)
         expect(screen.getByRole("status")).toHaveTextContent(status)
     });
+
     test("show empty status", () => {
-        render(<ProfileStatus status={null} updateProfileStatus={() => {
+        render(<ProfileStatus status={null} isOwner={true} updateProfileStatus={() => {
         }}/>)
         expect(screen.getByRole("status")).toHaveTextContent('empty status')
     });
+
+    test("do nothing if not isOwner", () => {
+        const status = "my status"
+        render(<ProfileStatus status={status} isOwner={false} updateProfileStatus={() => {
+        }}/>)
+        const statusOnPage = screen.queryByRole("status")
+
+        fireEvent.doubleClick(statusOnPage)
+        const statusOnPage1 = screen.queryByRole("status")
+        const input = screen.queryByRole("status-input")
+        expect(statusOnPage1).toHaveTextContent(status)
+        expect(input).not.toBeInTheDocument()
+    });
+
     test("show input after double click and hide after on blur", () => {
         const status = 'profile status'
-        render(<ProfileStatus status={status} updateProfileStatus={() => {
+        render(<ProfileStatus status={status} isOwner={true} updateProfileStatus={() => {
         }}/>)
         const statusOnPage = screen.queryByRole("status")
         const input = screen.queryByRole("status-input")
@@ -37,9 +52,10 @@ describe("Test Profile status component", () => {
         expect(statusOnPage2).toHaveTextContent(status)
         expect(input2).not.toBeInTheDocument()
     });
+
     test("type another status", () => {
         const status = 'profile status'
-        render(<ProfileStatus status={status} updateProfileStatus={jest.fn()}/>)
+        render(<ProfileStatus status={status} isOwner={true} updateProfileStatus={jest.fn()}/>)
         const statusOnPage = screen.queryByRole("status")
         const input = screen.queryByRole("status-input")
 

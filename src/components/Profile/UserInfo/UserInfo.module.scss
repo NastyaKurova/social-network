@@ -91,24 +91,34 @@
     width: 30px;
   }
 }
-.profileStatus{
+
+.profileStatus {
   position: absolute;
   left: 207px;
   bottom: -34px;
+
   input {
     margin: unset;
     padding: 6px;
   }
 }
-.userData{
+.profileStatusPointer {
+  cursor: pointer;
+}
+
+.userData {
   margin: 68px 0 32px 16px;
 }
-.userDataItem{
+
+.userDataItem {
   padding: 4px 0;
 }
-.userDataContacts{
+
+.userDataContacts {
   margin-left: 16px;
 }
-.editButton{
+
+.editButton {
   margin-bottom: 16px;
 }
+

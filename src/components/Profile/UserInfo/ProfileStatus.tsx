@@ -1,45 +1,41 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, FC, useEffect, useState} from 'react';
 import styles from './UserInfo.module.scss';
+import cn from 'classnames';
 
 type ProfileStatusPropsType = {
     status: string,
+    isOwner: boolean,
     updateProfileStatus: (status: string) => void,
 }
 
-class ProfileStatus extends React.Component<ProfileStatusPropsType> {
-    state = {
-        editMode: false,
-        status: this.props.status
+const ProfileStatus: FC<ProfileStatusPropsType> = ({status, isOwner, updateProfileStatus}) => {
+    const [editMode, setEditMode] = useState<boolean>(false)
+    const [statusText, setStatusText] = useState<string>(status)
+    const activateEditMode = () => {
+        if (isOwner) setEditMode(true)
     }
-    activateEditMode = () => {
-        this.setState({editMode: true})
+    const deactivateEditMode = () => {
+        setEditMode(false)
+        updateProfileStatus(statusText)
     }
-    deactivateEditMode = () => {
-        this.setState({editMode: false})
-        this.props.updateProfileStatus(this.state.status)
+    const changeStatus = (e: ChangeEvent<HTMLInputElement>) => {
+        setStatusText(e.target.value)
     }
-    changeStatus = (e: ChangeEvent<HTMLInputElement>) => {
-        this.setState({status: e.target.value})
-    }
+    useEffect(() => {
+        setStatusText(status)
+    }, [status])
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.status !== this.props.status) {
-            this.setState({status: this.props.status})
-        }
-    }
 
-    render() {
-        return <div className={styles.profileStatus}>
-            {this.state.editMode
-                ?
-                <div><input role="status-input" onBlur={this.deactivateEditMode} autoFocus={true}
-                            onChange={this.changeStatus}
-                            value={this.state.status} type="text"/>
-                </div>
-                : <div role="status"
-                       onDoubleClick={this.activateEditMode}>{this.props.status ? this.props.status : 'empty status'}</div>}
-        </div>
-    }
+    return <div className={cn(styles.profileStatus,{[styles.profileStatusPointer]:isOwner})}>
+        {editMode
+            ?
+            <div><input role="status-input" onBlur={deactivateEditMode} autoFocus={true}
+                        onChange={changeStatus}
+                        value={statusText} type="text"/>
+            </div>
+            : <div role="status"
+                   onDoubleClick={activateEditMode}>{statusText ? statusText : 'empty status'}</div>}
+    </div>
 }
 
 export default ProfileStatus;
