@@ -1,11 +1,11 @@
-import {AppStateType} from "../reduxStore";
+import { AppStateType } from '../reduxStore'
 
 export const getProfile = (state: AppStateType) => {
-    return state.profilePage.profile
+  return state.profilePage.profile
 }
 export const getProfileStatus = (state: AppStateType) => {
-    return state.profilePage.status
+  return state.profilePage.status
 }
 export const getAuthUserId = (state: AppStateType) => {
-    return state.auth.id
+  return state.auth.id
 }

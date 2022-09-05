@@ -1,5 +1,5 @@
-import {AppStateType} from "../reduxStore";
+import { AppStateType } from '../reduxStore'
 
 export const getPostData = (state: AppStateType) => {
-    return state.profilePage.postData
+  return state.profilePage.postData
 }

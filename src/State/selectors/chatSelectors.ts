@@ -1,9 +1,8 @@
-import {AppStateType} from "../reduxStore";
+import { AppStateType } from '../reduxStore'
 
 export const getChatMessages = (state: AppStateType) => {
-    return state.chat.messages
+  return state.chat.messages
 }
 export const getWsStatus = (state: AppStateType) => {
-    return state.chat.status
+  return state.chat.status
 }
-

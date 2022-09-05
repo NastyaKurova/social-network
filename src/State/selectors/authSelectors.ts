@@ -1,14 +1,14 @@
-import {AppStateType} from "../reduxStore";
+import { AppStateType } from '../reduxStore'
 
 export const getAuth = (state: AppStateType) => {
-    return state.auth.isAuth
+  return state.auth.isAuth
 }
 export const getLogin = (state: AppStateType) => {
-    return state.auth.login
+  return state.auth.login
 }
 export const getCaptureUrl = (state: AppStateType) => {
-    return state.auth.captureUrl
+  return state.auth.captureUrl
 }
 export const getIsInitialized = (state: AppStateType) => {
-    return state.initApp.isInitialized
+  return state.initApp.isInitialized
 }

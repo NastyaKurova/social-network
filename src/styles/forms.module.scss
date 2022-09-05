@@ -1,5 +1,5 @@
-@use "./colors.module";
-@use "./mixins.module";
+@use './colors.module';
+@use './mixins.module';
 
 label {
   display: block;
@@ -10,7 +10,7 @@ input {
   display: block;
   padding: 16px;
   margin-bottom: 16px;
-  @include mixins.activeForm(colors.$main-orange, 2px)
+  @include mixins.activeForm(colors.$main-orange, 2px);
 }
 
 textarea {
@@ -18,8 +18,7 @@ textarea {
   height: 100px;
   padding: 16px;
 
-  @include mixins.activeForm(colors.$main-orange, 2px)
-
+  @include mixins.activeForm(colors.$main-orange, 2px);
 }
 
 button {
@@ -40,5 +39,5 @@ select {
   margin-bottom: 16px;
   padding: 8px;
 
-  @include mixins.activeForm(colors.$main-orange, 1px)
+  @include mixins.activeForm(colors.$main-orange, 1px);
 }

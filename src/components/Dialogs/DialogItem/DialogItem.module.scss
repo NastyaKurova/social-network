@@ -1,8 +1,8 @@
-@use "../../../styles/colors.module";
+@use '../../../styles/colors.module';
 
-.dialogItem{
+.dialogItem {
   padding: 10px;
 }
-.dialogItemActive{
+.dialogItemActive {
   color: colors.$main-orange;
 }

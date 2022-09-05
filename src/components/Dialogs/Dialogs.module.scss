@@ -1,10 +1,9 @@
-.dialogsWrapper{
+.dialogsWrapper {
   padding: 16px;
   box-shadow: 0 0 8px 1px rgb(0 0 0 / 20%);
   background: white;
 }
-.dialogs{
-
+.dialogs {
   display: grid;
   grid-template-columns: 2fr 10fr;
 }
