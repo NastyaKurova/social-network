@@ -42,7 +42,7 @@ export type CurrentUserType = {
   id: number | null
   email: string | null
 }
-export type ResponseType<T = {}, RC = ResultCodesEnum> = {
+export type ResponseType<T = Record<string, unknown>, RC = ResultCodesEnum> = {
   data: T
   fieldsErrors: Array<string>
   messages: Array<string>

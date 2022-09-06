@@ -1,3 +1,4 @@
+import React from 'react'
 import { fireEvent, render, screen } from '@testing-library/react'
 import ProfileStatus from './ProfileStatus'
 
@@ -8,7 +9,7 @@ describe('Test Profile status component', () => {
       <ProfileStatus
         status={status}
         isOwner={true}
-        updateProfileStatus={() => {}}
+        updateProfileStatus={jest.fn}
       />
     )
     expect(screen.getByRole('status')).toHaveTextContent(status)
@@ -19,7 +20,7 @@ describe('Test Profile status component', () => {
       <ProfileStatus
         status={null}
         isOwner={true}
-        updateProfileStatus={() => {}}
+        updateProfileStatus={jest.fn}
       />
     )
     expect(screen.getByRole('status')).toHaveTextContent('empty status')
@@ -31,7 +32,7 @@ describe('Test Profile status component', () => {
       <ProfileStatus
         status={status}
         isOwner={false}
-        updateProfileStatus={() => {}}
+        updateProfileStatus={jest.fn}
       />
     )
     const statusOnPage = screen.queryByRole('status')
@@ -49,7 +50,7 @@ describe('Test Profile status component', () => {
       <ProfileStatus
         status={status}
         isOwner={true}
-        updateProfileStatus={() => {}}
+        updateProfileStatus={jest.fn}
       />
     )
     const statusOnPage = screen.queryByRole('status')
@@ -79,7 +80,7 @@ describe('Test Profile status component', () => {
       <ProfileStatus
         status={status}
         isOwner={true}
-        updateProfileStatus={jest.fn()}
+        updateProfileStatus={jest.fn}
       />
     )
     const statusOnPage = screen.queryByRole('status')

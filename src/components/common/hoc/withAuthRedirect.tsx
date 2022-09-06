@@ -17,7 +17,7 @@ export function withAuthRedirect<WCP>(Component: React.ComponentType<WCP>) {
   const mapStateToPropsWithRedirect = (state: AppStateType) => ({
     isAuth: state.auth.isAuth,
   })
-  return connect<MapStateToPropsType, {}, WCP, AppStateType>(
+  return connect<MapStateToPropsType, Record<string, never>, WCP, AppStateType>(
     mapStateToPropsWithRedirect
   )(RedirectComponent)
 }

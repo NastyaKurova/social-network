@@ -36,14 +36,16 @@ export const Messages: FC = () => {
   )
 }
 
-const Message: FC<{ message: ChatMessageType }> = React.memo(({ message }) => {
-  return (
-    <div className={styles.message}>
-      <div className={styles.messageSender}>
-        <img src={message.photo} alt="" />
-        <span className={styles.messageSenderName}>{message.userName}</span>
+const Message: FC<{ message: ChatMessageType }> = React.memo(
+  ({ message }: { message: ChatMessageType }) => {
+    return (
+      <div className={styles.message}>
+        <div className={styles.messageSender}>
+          <img src={message.photo} alt="" />
+          <span className={styles.messageSenderName}>{message.userName}</span>
+        </div>
+        <div className={styles.messageText}>{message.message}</div>
       </div>
-      <div className={styles.messageText}>{message.message}</div>
-    </div>
-  )
-})
+    )
+  }
+)

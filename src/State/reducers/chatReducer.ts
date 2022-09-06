@@ -1,5 +1,10 @@
 import { InferActionsTypes, ThunkType } from '../reduxStore'
-import { ChatMessageType, ChatStatusType } from '../../types/types'
+import {
+  ChatMessageType,
+  ChatStatusType,
+  MessageSubscriberType,
+  StatusSubscriberType,
+} from '../../types/types'
 import { ChatApi } from '../../api/chatApi'
 import { Dispatch } from 'redux'
 import { v1 } from 'uuid'
@@ -9,7 +14,7 @@ type InitialStateType = {
   status: ChatStatusType
 }
 
-let initialState: InitialStateType = {
+const initialState: InitialStateType = {
   messages: [],
   status: 'ready',
 }
@@ -21,8 +26,8 @@ function chatReducer(
   action: ActionsTypes
 ): InitialStateType {
   switch (action.type) {
-    case 'chat/SET-MESSAGES':
-      let messagesWithId = [
+    case 'chat/SET-MESSAGES': {
+      const messagesWithId = [
         ...action.payload.messages.map(m => ({ ...m, id: v1() })),
       ]
       return {
@@ -31,6 +36,7 @@ function chatReducer(
           (m, index, array) => index >= array.length - 100
         ),
       }
+    }
     case 'chat/CLEAR-MESSAGES':
       return { ...state, messages: [] }
     case 'chat/SET-STATUS':
@@ -56,7 +62,7 @@ type ChatThunkType = ThunkType<ActionsTypes>
 
 let _newMessageHandler: ((messages: ChatMessageType[]) => void) | null = null
 
-function newMessageHandlerCreator(dispatch: Dispatch) {
+function newMessageHandlerCreator(dispatch: Dispatch): MessageSubscriberType {
   if (_newMessageHandler === null) {
     _newMessageHandler = messages => {
       dispatch(actions.setMessages(messages))
@@ -67,7 +73,7 @@ function newMessageHandlerCreator(dispatch: Dispatch) {
 
 let _statusChangedHandler: ((status: ChatStatusType) => void) | null = null
 
-function statusChangedHandlerCreator(dispatch: Dispatch) {
+function statusChangedHandlerCreator(dispatch: Dispatch): StatusSubscriberType {
   if (_statusChangedHandler === null) {
     _statusChangedHandler = status => {
       dispatch(actions.setStatus(status))

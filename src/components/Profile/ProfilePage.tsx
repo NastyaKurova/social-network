@@ -45,7 +45,7 @@ const ProfilePage: FC<ProfilePropsType> = () => {
   }
 
   useEffect(() => {
-    let currentUserId: number = Number(userId)
+    let currentUserId = Number(userId)
     if (!userId) currentUserId = authUserId
 
     dispatch(requestProfile(currentUserId))

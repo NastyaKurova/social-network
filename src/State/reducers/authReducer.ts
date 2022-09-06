@@ -4,7 +4,7 @@ import { InferActionsTypes, ThunkType } from '../reduxStore'
 import { ResultCodesCaptureEnum, ResultCodesEnum } from '../../types/types'
 
 type InitialStateType = typeof initialState
-let initialState = {
+const initialState = {
   isAuth: false,
   login: null as string | null,
   id: null as number | null,
@@ -48,7 +48,7 @@ export function getCurrentUser(): AuthThunkType {
     const res = await authApi.getAuthMe()
 
     if (res.resultCode === ResultCodesEnum.Success) {
-      let { id, login, email } = res.data
+      const { id, login, email } = res.data
       dispatch(actions.setCurrentUser({ id, login, email, isAuth: true }))
     } else {
       dispatch(actions.setCurrentUser(initialState))

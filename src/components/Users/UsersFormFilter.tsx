@@ -8,7 +8,7 @@ type UsersFormFilterPropsType = {
   findUsers: (values: UsersFilterType) => void
 }
 export const UsersFormFilter: FC<UsersFormFilterPropsType> = React.memo(
-  ({ findUsers, filter }) => {
+  ({ findUsers, filter }: UsersFormFilterPropsType) => {
     return (
       <div className={styles.filter}>
         <Formik

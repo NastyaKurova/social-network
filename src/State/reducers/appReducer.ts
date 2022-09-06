@@ -3,7 +3,7 @@ import { InferActionsTypes } from '../reduxStore'
 
 type InitialStateType = typeof initialState
 
-let initialState = {
+const initialState = {
   isInitialized: false,
 }
 

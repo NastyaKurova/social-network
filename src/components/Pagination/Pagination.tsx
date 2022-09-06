@@ -15,15 +15,15 @@ export const Pagination: FC<PaginationPropsType> = ({
   pageAmount = 5,
   selectPage,
 }) => {
-  let pageCount: number = Math.ceil(totalCount / pageSize)
-  let pages: number[] = []
+  const pageCount: number = Math.ceil(totalCount / pageSize)
+  const pages: number[] = []
   for (let i = 0; i <= pageCount; i++) {
     pages.push(i)
   }
-  let portionCount = Math.ceil(pageCount / pageAmount)
+  const portionCount = Math.ceil(pageCount / pageAmount)
   const [portionNumber, setPortionNumber] = useState(1)
-  let portionNumberLeftNumber = (portionNumber - 1) * pageAmount + 1
-  let portionNumberRightNumber = portionNumber * pageAmount
+  const portionNumberLeftNumber = (portionNumber - 1) * pageAmount + 1
+  const portionNumberRightNumber = portionNumber * pageAmount
   return (
     <div>
       {portionNumber > 1 && (

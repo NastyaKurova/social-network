@@ -3,7 +3,7 @@ import styles from './Users.module.scss'
 import userDefault from '../../assets/userDefault.png'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Pagination } from '../Pagination/Pagination'
-import { UsersFilterType } from '../../types/types'
+import { UsersFilterType, UsersType } from '../../types/types'
 import { UsersFormFilter } from './UsersFormFilter'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -39,9 +39,9 @@ export const Users: FC = () => {
     const filerPage = query.get('page')
     let actualPage = currentPage
     let actualFilter = filter
-    if (!!filerPage) actualPage = Number(filerPage)
-    if (!!filerTerm) actualFilter = { ...actualFilter, term: filerTerm }
-    if (!!filerFriend) actualFilter = { ...actualFilter, friend: filerFriend }
+    if (filerPage) actualPage = Number(filerPage)
+    if (filerTerm) actualFilter = { ...actualFilter, term: filerTerm }
+    if (filerFriend) actualFilter = { ...actualFilter, friend: filerFriend }
     dispatch(requestUsers(actualPage, pageSize, actualFilter))
   }, [])
 
@@ -81,9 +81,19 @@ export const Users: FC = () => {
     </div>
   )
 }
-
-const User = ({ user, followedProgressArr, followUser, unFollowUser }) => {
-  const dispatch = useDispatch()
+type UserPropsType = {
+  user: UsersType
+  followedProgressArr: Array<number>
+  followUser: (userId: number) => void
+  unFollowUser: (userId: number) => void
+}
+const User: FC<UserPropsType> = ({
+  user,
+  followedProgressArr,
+  followUser,
+  unFollowUser,
+}) => {
+  const dispatch = useDispatch<any>()
 
   const clickFollowButton = () =>
     user.followed

@@ -14,7 +14,7 @@ import thunkMiddleware, { ThunkAction } from 'redux-thunk'
 import appReducer from './reducers/appReducer'
 import chatReducer from './reducers/chatReducer'
 
-let rootReducer = combineReducers({
+const rootReducer = combineReducers({
   dialogPage: dialogsReducer,
   profilePage: profileReducer,
   usersPage: usersReducer,
@@ -40,8 +40,8 @@ export type ThunkType<A extends Action> = ThunkAction<
   A
 >
 
-// @ts-ignore
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const composeEnhancers =
+  (window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] as typeof compose) || compose
 
 const store = createStore(
   rootReducer,

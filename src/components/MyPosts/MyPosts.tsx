@@ -20,8 +20,8 @@ export const MyPosts: FC = () => {
       <div className={styles.postForm}>
         <PostForm addPost={addPostUser} />
       </div>
-      {postData.map(({ id, text, time, likes }, index) => (
-        <Post key={index} text={text} time={time} likes={likes} />
+      {postData.map(({ id, text, time, likes }) => (
+        <Post key={id} text={text} time={time} likes={likes} />
       ))}
     </div>
   )

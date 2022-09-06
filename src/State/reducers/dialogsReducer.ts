@@ -3,7 +3,7 @@ import { DialogsDataType, MessagesDataType } from '../../types/types'
 
 type InitialStateType = typeof initialState
 
-let initialState = {
+const initialState = {
   dialogsData: [
     { id: 1, name: 'Lena' },
     { id: 2, name: 'Zhenya' },

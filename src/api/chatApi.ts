@@ -18,7 +18,7 @@ const closeHandler = () => {
   setTimeout(createChannel, 3000)
 }
 const messageHandler = (e: MessageEvent) => {
-  let newMessages: ChatMessageType[] = JSON.parse(e.data)
+  const newMessages: ChatMessageType[] = JSON.parse(e.data)
   subscribers['message-received'].forEach(s => s(newMessages))
 }
 const openHandler = () => {

@@ -1,6 +1,5 @@
 import React, { FC } from 'react'
 import { Field, Form, Formik } from 'formik'
-import styles from './MyPosts.module.scss'
 
 type PostFormPropsType = {
   addPost: ({ postText }: { postText: string }) => void

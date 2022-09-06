@@ -32,7 +32,6 @@ const store = {
   getState() {
     return this._state
   },
-  _callSubscriber() {},
   dispatch(action) {
     this._state.profilePage = profileReducer(this._state.profilePage, action)
     this._state.dialogPage = dialogsReducer(this._state.dialogPage, action)

@@ -10,7 +10,7 @@ import { DispatchType, InferActionsTypes, ThunkType } from '../reduxStore'
 
 export type InitialStateType = typeof initialState
 
-let initialState = {
+const initialState = {
   users: [] as Array<UsersType>,
   currentPage: 1,
   totalCount: 19,

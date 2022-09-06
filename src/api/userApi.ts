@@ -10,7 +10,7 @@ type UserResponseType = {
 }
 
 export const usersApi = {
-  getUsers(currentPage: number = 1, pageSize: number = 10, filter) {
+  getUsers(currentPage = 1, pageSize = 10, filter) {
     const { term, friend } = filter
     return instance
       .get<UserResponseType>(
