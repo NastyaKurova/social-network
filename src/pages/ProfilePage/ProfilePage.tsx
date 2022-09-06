@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react'
 import styles from './Profile.module.scss'
 import { UserInfo } from './UserInfo/UserInfo'
-import { MyPosts } from '../MyPosts/MyPosts'
+import { MyPosts } from '../../components/MyPosts/MyPosts'
 import { ProfileDataType } from '../../types/types'
 import {
   getAuthUserId,

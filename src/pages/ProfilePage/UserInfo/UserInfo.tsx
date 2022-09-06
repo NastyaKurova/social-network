@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import styles from './UserInfo.module.scss'
 import userDefault from '../../../assets/userDefault.png'
-import { Loader } from '../../common/Loader/Loader'
+import { Loader } from '../../../components/common/Loader/Loader'
 import ProfileStatus from './ProfileStatus'
 import updateIco from '../../../assets/icos/update.svg'
 import { UserData } from './UserData'

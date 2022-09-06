@@ -1,5 +1,5 @@
 import { usersApi } from '../../api/userApi'
-import { updateObjectArray } from '../../Utils/object-helpers'
+import { updateObjectArray } from '../../utils/object-helpers'
 import {
   ResponseType,
   ResultCodesEnum,

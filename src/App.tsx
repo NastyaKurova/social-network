@@ -3,7 +3,7 @@ import './App.scss'
 import { Navbar } from './components/Navbar/Navbar'
 import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom'
 import Header from './components/Header/Header'
-import LoginPage from './components/LoginPage/LoginPage'
+import LoginPage from './pages/LoginPage/LoginPage'
 import { Provider, useDispatch, useSelector } from 'react-redux'
 
 import { Loader } from './components/common/Loader/Loader'
@@ -12,10 +12,10 @@ import { withSuspense } from './components/common/hoc/withSuspense'
 import store from './State/reduxStore'
 import { getIsInitialized } from './State/selectors/authSelectors'
 
-const DialogsPage = React.lazy(() => import('./components/Dialogs/DialogsPage'))
-const ProfilePage = React.lazy(() => import('./components/Profile/ProfilePage'))
-const UsersContainer = React.lazy(() => import('./components/Users/UserPage'))
-const ChatPage = React.lazy(() => import('./components/Chat/ChatPage'))
+const DialogsPage = React.lazy(() => import('./pages/DialogsPage/DialogsPage'))
+const ProfilePage = React.lazy(() => import('./pages/ProfilePage/ProfilePage'))
+const UsersContainer = React.lazy(() => import('./pages/UsersPage/UserPage'))
+const ChatPage = React.lazy(() => import('./pages/ChatPage/ChatPage'))
 
 const App: FC = () => {
   const dispatch = useDispatch<any>()

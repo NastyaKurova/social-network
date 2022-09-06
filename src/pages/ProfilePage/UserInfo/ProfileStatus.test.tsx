@@ -2,7 +2,7 @@ import React from 'react'
 import { fireEvent, render, screen } from '@testing-library/react'
 import ProfileStatus from './ProfileStatus'
 
-describe('Test Profile status component', () => {
+describe('Test ProfilePage status component', () => {
   test('show status from props', () => {
     const status = 'profile status'
     render(
